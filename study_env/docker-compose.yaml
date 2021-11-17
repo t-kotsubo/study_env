@@ -1,0 +1,15 @@
+version: "3"
+services:
+  ubuntu:
+    build: ./Ubuntu
+    container_name: "ubuntu"
+
+  centos:
+    build: ./CentOS
+    container_name: "centos"
+
+  db:
+    image: mariadb:latest
+    container_name: "mariadb"
+    volumes:
+      - ./data/mariadb:/var/lib/mysql
