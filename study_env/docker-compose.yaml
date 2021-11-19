@@ -3,13 +3,16 @@ services:
   ubuntu:
     build: ./Ubuntu
     container_name: "ubuntu"
+    tty: true
 
   centos:
     build: ./CentOS
     container_name: "centos"
+    tty: true
 
   db:
     image: mariadb:latest
     container_name: "mariadb"
     volumes:
       - ./data/mariadb:/var/lib/mysql
+    tty: true
