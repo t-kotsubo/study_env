@@ -8,7 +8,13 @@ RUN (cd /lib/systemd/system/sysinit.target.wants/; for i in *; do [ $i == \
     rm -f /lib/systemd/system/sockets.target.wants/*udev*; \
     rm -f /lib/systemd/system/sockets.target.wants/*initctl*; \
     rm -f /lib/systemd/system/basic.target.wants/*;\
-    rm -f /lib/systemd/system/anaconda.target.wants/*;\
-    yum update -y && yum upgrade -y
+    rm -f /lib/systemd/system/anaconda.target.wants/*;
+RUN yum update -y && yum upgrade -y
+RUN yum install -y sudo
+RUN yum install -y vim
+RUN useradd -m -G sudo centos
+# set password fo"root" & "centos"
+RUN echo 'root:root' | chpasswd
+RUN echo 'centos:centos' | chpasswd
 VOLUME [ "/sys/fs/cgroup" ]
 CMD ["/usr/sbin/init"]

@@ -1,2 +1,12 @@
 FROM ubuntu:latest
-RUN apt update -y && apt upgrade
+RUN apt update && apt upgrade 
+# create user's home directory if not exist.
+# grant root priviledges on "ubuntu" user.
+# gpasswd -a [user] [group]: add user into the group
+# gpasswd -d [user] [group]: delete user from the group
+RUN apt install -y sudo
+RUN apt install -y vim
+RUN useradd -m -G sudo ubuntu
+# set password for "root" & "ubuntu"
+RUN echo 'root:root' | chpasswd
+RUN echo 'ubuntu:ubuntu' | chpasswd
